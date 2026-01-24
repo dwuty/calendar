@@ -1,4 +1,4 @@
-.sass-cache/
-*.css.map
-*.sass.map
-*.scss.map
+vendor
+composer.lock
+.env
+.sass

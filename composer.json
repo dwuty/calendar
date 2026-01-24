@@ -1,0 +1,26 @@
+{
+	"name": "dwuty/calendar",
+	"description": "calendar",
+	"keywords": [
+		"calendar"
+	],
+	"homepage": "https://dwuty.de/",
+	"authors": [
+		{
+			"name": "Robert Katzfuss",
+			"email": "info@dwuty.de"
+		}
+	],
+	"license": "MIT",
+	"require": {
+		"php": ">=8.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"dwuty\\calendar\\": "src/"
+		}
+	},
+	"config": {
+		"optimize-autoloader": true
+	}
+}
