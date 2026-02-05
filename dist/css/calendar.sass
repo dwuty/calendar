@@ -1,27 +1,32 @@
-$primary-clr: #1708e3
+@use "sass:color"
+	
+$font_stack: Verdana, sans-serif
+$calendar-font-clr: #1708e3
+$calendar-background-clr: #ffffff
+$background-clr: #373c4f
+$background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hsl)
+
+@mixin arrows()
+	border: solid 
+	color: $background-clr
+	border-width: 0 5px 5px 0
+	display: inline-block
+	padding: 8px
 
 *
 	margin: 0
 	padding: 0
 	box-sizing: border-box
-	font-family: "Poppins", sans-serif
-
-body
-	min-height: 100vh
-	display: flex
-	place-content: center
-	background-color: #e2e1dc
+	font: 100% $font_stack
 
 .container
-	position: relative
+	display: flex
 	width: 1200px
-	min-height: 850px
+	min-height: 100vh
 	margin: 0 auto
 	padding: 5px
-	color: #fff
-	display: flex
 	border-radius: 10px
-	background-color: #373c4f
+	background-color: $background-clr
 
 .left
 	width: 60%
@@ -34,10 +39,10 @@ body
 	display: flex
 	flex-direction: column
 	flex-wrap: wrap
-	justify-content: space-between
-	color: #878895
+	justify-content: start
+	color: $background-clr
 	border-radius: 5px
-	background-color: #fff
+	background-color: $calendar-background-clr
 
 .calendar
 	// 3d effect
@@ -65,7 +70,7 @@ body
 		align-items: center
 		justify-content: space-between
 		padding: 0	50px
-		font-size: 1.4rem
+		font-size: 2rem
 		font-weight: bold
 		text-transform: capitalize
 		.prev,
@@ -74,7 +79,15 @@ body
 		.prev,
 		.next
 			&:hover
-				color: $primary-clr
+				color: $calendar-font-clr
+		.arrow_left
+			@include arrows
+			transform: rotate(135deg)
+			-webkit-transform: rotate(135deg)
+		.arrow_right
+			@include arrows
+			transform: rotate(-45deg)
+			-webkit-transform: rotate(-45deg)
 
 	// weekdays
 	.weekdays
@@ -112,19 +125,19 @@ body
 			align-items: center
 			justify-content: center
 			cursor: pointer
-			color: $primary-clr
-			border: 1px solid #b1b1b165
+			color: $calendar-font-clr
+			border: 1px solid $background-clr-lght
 			&:not(.prev-date , .next-date)
 				&:hover
-					color: #fff
-					background-color: $primary-clr
+					color: $calendar-background-clr
+					background-color: $calendar-font-clr
 		.prev-date, .next-date
-			color: #b3b3b3
+			color: $background-clr-lght
 		.active
 			position: relative
 			font-size: 2em
-			color: #fff
-			background-color: $primary-clr
+			color: $calendar-background-clr
+			background-color: $calendar-font-clr
 			&::before
 				content: ''
 				position: absolute
@@ -132,7 +145,7 @@ body
 				left: 0
 				width: 100%
 				height: 100%
-				box-shadow: 0 0 10px $primary-clr
+				box-shadow: 0 0 10px $calendar-font-clr
 		.today
 			font-size: 2.5rem
 		.event
@@ -146,14 +159,14 @@ body
 				height: 6px
 				border-radius: 30px
 				transform: translateX(-50%)
-				background-color: $primary-clr
+				background-color: $calendar-font-clr
 	.event
 		&:hover
 			&::after
-				background-color: #fff
+				background-color: $calendar-background-clr
 	.active.event
 			&::after
-				background-color: #fff
+				background-color: $calendar-background-clr
 				bottom: 20%
 			padding-bottom: 10px
 	// goto
@@ -166,13 +179,13 @@ body
 		gap: 5px
 		padding: 0 20px
 		margin-bottom: 20px
-		color: $primary-clr
+		color: $calendar-font-clr
 		.goto
 			display: flex
 			align-items: center
 			border-radius: 5px
 			overflow: hidden
-			border: 1px solid $primary-clr
+			border: 1px solid $calendar-font-clr
 			input
 				width: 100%
 				height: 30px
@@ -180,21 +193,22 @@ body
 				border: none
 				border-radius: 5px
 				padding: 0 20px
-				color: $primary-clr
+				color: $calendar-font-clr
+				background-color: $calendar-background-clr
 			button
 				border: none
-				border-left: 1px solid $primary-clr
+				border-left: 1px solid $calendar-font-clr
 				border-radius: 0
 		button
 			padding: 5px 10px
-			border: 1px solid $primary-clr
+			border: 1px solid $calendar-font-clr
 			border-radius: 5px
 			background-color: transparent
 			cursor: pointer
-			color: $primary-clr
+			color: $calendar-font-clr
 			&:hover
-				color: #fff
-				background-color: $primary-clr
+				color: $calendar-background-clr
+				background-color: $calendar-font-clr
 
 //event
 .right
@@ -218,10 +232,11 @@ body
 		.event-day
 			font-size: 2rem
 			font-weight: 500
+			color: $background-clr-lght
 		.event-date
 			font-size: 1rem
 			font-weight: 400
-			color: #878895
+			color: $background-clr-lght
 
 .events
 	width: 100%
@@ -242,18 +257,18 @@ body
 		gap: 5px
 		padding: 0 20px
 		padding-left: 50px
-		color: #fff
+		color: $calendar-background-clr
 		cursor: pointer
-		background: linear-gradient(90deg,#3f4458, transparent)
+		background: linear-gradient(90deg,$background-clr, transparent)
 		&:nth-child(even)
 			background: transparent
 		&:hover
-			background: linear-gradient(90deg,$primary-clr,transparent)
+			background: linear-gradient(90deg,$calendar-font-clr,transparent)
 			.title
 				i
-					color: #fff
+					color: $calendar-background-clr
 			.event-time
-				color: #fff
+				color: $calendar-background-clr
 			&::after
 				display: flex
 		.title
@@ -262,21 +277,19 @@ body
 			.event-title
 				font-size: 1rem
 				font-weight: bold
-				// font-weight: 400
 			.event-time, .event-details
 				font-size: 0.8rem
 				font-weight: 400
-				color: #878895
+				color: $background-clr-lght
 				pointer-events: none
 	.no-event
 		width: 100%
 		height: 100%
 		display: flex
-		align-items: center
-		justify-content: center
+		place-content: center
 		font-size: 1.5rem
 		font-weight: 500
-		color:#878787
+		color:$background-clr-lght
 
 @media screen and ( max-width: 992px )
 	.container
@@ -303,9 +316,14 @@ body
 			.month
 				width: 100%
 				height: 75px
+				font-size: 1.6rem
+				.arrow_left, .arrow_right
+					padding: 5px
+					border-width: 0 3px 3px 0
 			.weekdays
 				width: 100%
 				height: 50px
+				font-size: 1rem
 			.days
 				width: 100%
 				.day
@@ -313,9 +331,14 @@ body
 					font-size: 0.8rem
 				.active, .today
 					font-size: 1rem
+			.goto-today
+				height: 40px
+				.goto
+					input
+						height: 20px
 		.right
 			.today-date
-				padding: 20px	
+				height: 30px
 				padding-left: 0px	
 				margin-top: 0px
 	.events
