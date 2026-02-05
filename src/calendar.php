@@ -16,9 +16,9 @@ class calendar
 		echo '<div class="left">';
 		echo '<div class="calendar">';
 		echo '<div class="month">';
-		echo '<i class="prev">&lt;</i>';
+		echo '<i class="prev arrow_left"></i>';
 		echo '<div class="date"></div>';
-		echo '<i class="next">&gt;</i>';
+		echo '<i class="next arrow_right"></i>';
 		echo '</div>';
 		echo '<div class="weekdays">';
 		foreach ($content['weekdays'] as $value) {
