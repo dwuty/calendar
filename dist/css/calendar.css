@@ -193,7 +193,7 @@
   border: 1px solid #1708e3;
 }
 .calendar .goto-today .goto input {
-  width: 100%;
+  width: 65%;
   height: 30px;
   outline: none;
   border: none;
@@ -203,6 +203,7 @@
   background-color: #ffffff;
 }
 .calendar .goto-today .goto button {
+  width: 35%;
   border: none;
   border-left: 1px solid #1708e3;
   border-radius: 0;
@@ -269,7 +270,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 5px;
-  padding: 0 20px;
+  padding: 5px 20px;
   padding-left: 50px;
   color: #ffffff;
   cursor: pointer;
@@ -323,7 +324,7 @@
   }
   .container .left, .container .right {
     width: 100%;
-    padding: 20px;
+    padding: 5px;
   }
   .container::before, .container::after {
     top: 100%;
@@ -364,8 +365,13 @@
   .container .calendar .days .active, .container .calendar .days .today {
     font-size: 1rem;
   }
+  .container .calendar .days .event::after {
+    width: 50%;
+    height: 3px;
+  }
   .container .calendar .goto-today {
     height: 40px;
+    font-size: 0.8rem;
   }
   .container .calendar .goto-today .goto input {
     height: 20px;
@@ -374,8 +380,19 @@
     height: 30px;
     padding-left: 0px;
     margin-top: 0px;
+    place-content: space-around space-evenly;
+  }
+  .container .right .today-date .event-day {
+    font-size: 1.4rem;
+    font-weight: 400;
   }
   .events {
     padding-bottom: 340px;
+  }
+  .events .no-event {
+    place-content: space-around space-evenly;
+  }
+  .events .event {
+    padding: 5px;
   }
 }/*# sourceMappingURL=calendar.css.map */

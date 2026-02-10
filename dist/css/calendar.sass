@@ -157,6 +157,8 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 				left: 50%
 				width: 75%
 				height: 6px
+				// width: 75%
+				// height: 6px
 				border-radius: 30px
 				transform: translateX(-50%)
 				background-color: $calendar-font-clr
@@ -187,7 +189,7 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 			overflow: hidden
 			border: 1px solid $calendar-font-clr
 			input
-				width: 100%
+				width: 65%
 				height: 30px
 				outline: none
 				border: none
@@ -196,6 +198,7 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 				color: $calendar-font-clr
 				background-color: $calendar-background-clr
 			button
+				width: 35%
 				border: none
 				border-left: 1px solid $calendar-font-clr
 				border-radius: 0
@@ -255,7 +258,7 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 		justify-content: center
 		flex-direction: column
 		gap: 5px
-		padding: 0 20px
+		padding: 5px 20px
 		padding-left: 50px
 		color: $calendar-background-clr
 		cursor: pointer
@@ -299,7 +302,7 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 		width: 550px
 		.left, .right
 			width: 100%
-			padding: 20px
+			padding: 5px
 		&::before,
 		&::after
 			top: 100%
@@ -331,15 +334,28 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 					font-size: 0.8rem
 				.active, .today
 					font-size: 1rem
+				.event
+					&::after
+						width: 50%
+						height: 3px
 			.goto-today
 				height: 40px
+				font-size: 0.8rem
 				.goto
 					input
 						height: 20px
 		.right
 			.today-date
 				height: 30px
-				padding-left: 0px	
+				padding-left: 0px
 				margin-top: 0px
+				place-content: space-around space-evenly
+				.event-day
+					font-size: 1.4rem
+					font-weight: 400
 	.events
 		padding-bottom: 340px
+		.no-event
+			place-content: space-around space-evenly
+		.event
+			padding: 5px
