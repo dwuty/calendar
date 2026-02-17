@@ -1,6 +1,6 @@
 @use "sass:color"
 	
-$font_stack: Verdana, sans-serif
+$font_stack: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 $calendar-font-clr: #1708e3
 $calendar-background-clr: #ffffff
 $background-clr: #373c4f
@@ -11,351 +11,223 @@ $background-clr-lght: color.adjust($background-clr,  $lightness: 60%, $space: hs
 	color: $background-clr
 	border-width: 0 5px 5px 0
 	display: inline-block
-	padding: 8px
+	padding: 6px
 
-*
+*	
 	margin: 0
-	padding: 0
-	box-sizing: border-box
-	font: 100% $font_stack
-
-.container
-	display: flex
-	width: 1200px
-	min-height: 100vh
-	margin: 0 auto
 	padding: 5px
+	box-sizing: border-box
+	font-family: $font_stack
+
+.container-calendar
+	display: flex
+	justify-content: start
+	min-height: 50vh
 	border-radius: 10px
 	background-color: $background-clr
-
-.left
-	width: 60%
-	padding: 20px
-
-.calendar
-	position: relative
-	width: 100%
-	height: 100%
-	display: flex
-	flex-direction: column
-	flex-wrap: wrap
-	justify-content: start
-	color: $background-clr
-	border-radius: 5px
-	background-color: $calendar-background-clr
-
-.calendar
-	// 3d effect
-	&::before,
-	&::after
-		content: ''
-		position: absolute
-		top: 50%
-		left: 100%
-		width: 12px
-		height: 97%
-		border-radius: 0 5px 5px 0
-		background-color: #d3d5d6d7
-		transform: translateY(-50%)
-	&::before
-		height: 94%
-		left: calc(100% + 12px)
-		background-color: rgb(153,153,153)
-
-	//month
-	.month
-		width: 100%
-		height: 150px
-		display: flex
-		align-items: center
-		justify-content: space-between
-		padding: 0	50px
-		font-size: 2rem
-		font-weight: bold
-		text-transform: capitalize
-		.prev,
-		.next
-			cursor: pointer
-		.prev,
-		.next
-			&:hover
-				color: $calendar-font-clr
-		.arrow_left
-			@include arrows
-			transform: rotate(135deg)
-			-webkit-transform: rotate(135deg)
-		.arrow_right
-			@include arrows
-			transform: rotate(-45deg)
-			-webkit-transform: rotate(-45deg)
-
-	// weekdays
-	.weekdays
-		width: 100%
-		height: 100px
-		display: flex
-		align-items: center
-		justify-content: space-between
-		padding: 0 20px
-		font-size: 1.4rem
-		font-weight: bold
-		text-transform: capitalize
-		div
-			width: 14.28%
-			height: 100%
-			display: flex
-			place-content: center
-			align-items: center
-			justify-content: center
-
-	//days
-	.days
-		width: 100%
-		display: flex
-		flex-wrap: wrap
-		justify-content: space-between
-		padding: 0 20px
-		font-size: 1.4rem
-		font-weight: bold
-		margin-bottom: 20px
-		.day
-			width: 14.28%
-			height: 90px
-			display: flex
-			align-items: center
-			justify-content: center
-			cursor: pointer
-			color: $calendar-font-clr
-			border: 1px solid $background-clr-lght
-			&:not(.prev-date , .next-date)
-				&:hover
+	.left
+		min-width: 600px
+		.calendar
+			color: $background-clr
+			border-radius: 5px
+			background-color: $calendar-background-clr
+			.month
+				display: flex
+				height: 80px
+				align-items: center
+				justify-content: space-evenly
+				font-size: 2rem
+				font-weight: bold
+				text-transform: capitalize
+				.prev, .next
+					cursor: pointer
+				.prev, .next 
+					&:hover
+						color: $calendar-font-clr
+				.arrow-left
+					@include arrows
+					transform: rotate(135deg)
+					-webkit-transform: rotate(135deg)
+				.arrow-right
+					@include arrows
+					transform: rotate(-45deg)
+					-webkit-transform: rotate(-45deg)
+			.weekdays
+				display: flex
+				height: 50px
+				align-items: center
+				justify-content: space-evenly
+				font-size: 1.4rem
+				font-weight: bold
+				text-transform: capitalize
+				div
+					display: flex
+					place-content: center
+					align-items: center
+					justify-content: center
+					width: calc(100% / 7) // display 7 days per row
+					height: 100%
+			.days
+				display: flex
+				justify-content: space-evenly
+				flex-wrap: wrap
+				.day
+					display: flex
+					place-content: center
+					align-items: center
+					justify-content: center
+					width: calc( 100% / 7) // display 7 days per row
+					height: 60px
+					cursor: pointer
+					color: $calendar-font-clr
+					font-size: 1.4rem
+					border: 1px solid $background-clr-lght
+					&:not(.prev-date , .next-date)
+						&:hover
+							color: $calendar-background-clr
+							background-color: $calendar-font-clr
+				.prev-date, .next-date
+					color: $background-clr-lght
+				.today
+					font-size: 2.0rem
+					font-weight: bold
+				.active
+					position: relative
+					font-size: 2em
 					color: $calendar-background-clr
 					background-color: $calendar-font-clr
-		.prev-date, .next-date
-			color: $background-clr-lght
-		.active
-			position: relative
-			font-size: 2em
-			color: $calendar-background-clr
-			background-color: $calendar-font-clr
-			&::before
-				content: ''
-				position: absolute
-				top: 0
-				left: 0
-				width: 100%
-				height: 100%
-				box-shadow: 0 0 10px $calendar-font-clr
-		.today
-			font-size: 2.5rem
-		.event
-			position: relative
-			&::after
-				content: ''
-				position: absolute
-				bottom: 10%
-				left: 50%
-				width: 75%
-				height: 6px
-				// width: 75%
-				// height: 6px
-				border-radius: 30px
-				transform: translateX(-50%)
-				background-color: $calendar-font-clr
-	.event
-		&:hover
-			&::after
-				background-color: $calendar-background-clr
-	.active.event
-			&::after
-				background-color: $calendar-background-clr
-				bottom: 20%
-			padding-bottom: 10px
-	// goto
-	.goto-today
-		width: 100%
-		height: 50px
-		display: flex
-		align-items: center
-		justify-content: space-between
-		gap: 5px
-		padding: 0 20px
-		margin-bottom: 20px
-		color: $calendar-font-clr
-		.goto
-			display: flex
-			align-items: center
-			border-radius: 5px
-			overflow: hidden
-			border: 1px solid $calendar-font-clr
-			input
-				width: 65%
-				height: 30px
-				outline: none
-				border: none
-				border-radius: 5px
-				padding: 0 20px
-				color: $calendar-font-clr
-				background-color: $calendar-background-clr
-			button
-				width: 35%
-				border: none
-				border-left: 1px solid $calendar-font-clr
-				border-radius: 0
-		button
-			padding: 5px 10px
-			border: 1px solid $calendar-font-clr
-			border-radius: 5px
-			background-color: transparent
-			cursor: pointer
-			color: $calendar-font-clr
-			&:hover
-				color: $calendar-background-clr
-				background-color: $calendar-font-clr
-
-//event
-.right
-	position: relative
-	width: 40%
-	min-height: 100%
-	padding: 20px 0
-	.today-date
-		width: 100%
-		height: 50px
-		display: flex
-		flex-wrap: wrap
-		gap: 10px
-		align-items: center
-		justify-content: space-between
-		padding: 0 40px
-		padding-left: 70px
-		margin-top: 50px
-		margin-bottom: 20px
-		text-transform: capitalize
-		.event-day
-			font-size: 2rem
-			font-weight: 500
-			color: $background-clr-lght
-		.event-date
-			font-size: 1rem
-			font-weight: 400
-			color: $background-clr-lght
-
-.events
-	width: 100%
-	height: 100%
-	max-height: 600px
-	overflow-x: hidden
-	overflow-y: auto
-	display: flex
-	flex-direction: column
-	padding: 4px
-	.event
-		position: relative
-		width: 95%
-		min-height: 70px
-		display: flex
-		justify-content: center
-		flex-direction: column
-		gap: 5px
-		padding: 5px 20px
-		padding-left: 50px
-		color: $calendar-background-clr
-		cursor: pointer
-		background: linear-gradient(90deg,$background-clr, transparent)
-		&:nth-child(even)
-			background: transparent
-		&:hover
-			background: linear-gradient(90deg,$calendar-font-clr,transparent)
-			.title
-				i
-					color: $calendar-background-clr
-			.event-time
-				color: $calendar-background-clr
-			&::after
-				display: flex
-		.title
-			display: flex
-			pointer-events: none
-			.event-title
-				font-size: 1rem
-				font-weight: bold
-			.event-time, .event-details
-				font-size: 0.8rem
-				font-weight: 400
-				color: $background-clr-lght
-				pointer-events: none
-	.no-event
-		width: 100%
-		height: 100%
-		display: flex
-		place-content: center
-		font-size: 1.5rem
-		font-weight: 500
-		color:$background-clr-lght
-
-@media screen and ( max-width: 992px )
-	.container
-		min-height: 100vh
-		flex-direction: column
-		border-radius: 0
-		width: 550px
-		.left, .right
-			width: 100%
-			padding: 5px
-		&::before,
-		&::after
-			top: 100%
-			left: 50%
-			width: 97%
-			height: 12px
-			border-radius: 0 0 5px 5px
-			transform: translateX(-50%)
-		&::before
-			width: 94%
-			top: calc(100% + 12px)
-		.calendar
-			width: 440px
-			.month
-				width: 100%
-				height: 75px
-				font-size: 1.6rem
-				.arrow_left, .arrow_right
-					padding: 5px
-					border-width: 0 3px 3px 0
-			.weekdays
-				width: 100%
-				height: 50px
-				font-size: 1rem
-			.days
-				width: 100%
-				.day
-					height: 40px
-					font-size: 0.8rem
-				.active, .today
-					font-size: 1rem
+					&::before
+						content: ''
+						position: absolute
+						top: 0
+						left: 0
+						width: 100%
+						height: 100%
+						box-shadow: 0 0 10px $calendar-font-clr
 				.event
+					position: relative
 					&::after
-						width: 50%
-						height: 3px
+						content: ''
+						position: absolute
+						bottom: 10%
+						left: 50%
+						width: 40%
+						height: 0.7vh
+						border-radius: 30px
+						transform: translateX(-50%)
+						background-color: $calendar-font-clr
+					&:hover
+						&::after
+							background-color: $calendar-background-clr
+				.active.event
+					padding-bottom: 10px
+					&::after
+						background-color: $calendar-background-clr
+						bottom: 10%
 			.goto-today
-				height: 40px
-				font-size: 0.8rem
+				height: 50px
+				display: flex
+				align-items: center
+				justify-content: space-between
+				padding: 30px 10px
+				color: $calendar-font-clr
 				.goto
+					display: flex
+					align-items: center
+					border-radius: 5px
+					overflow: hidden
+					border: 1px solid $calendar-font-clr
 					input
-						height: 20px
-		.right
-			.today-date
-				height: 30px
-				padding-left: 0px
-				margin-top: 0px
-				place-content: space-around space-evenly
-				.event-day
+						width: 65%
+						height: 30px
+						outline: none
+						border: none
+						border-radius: 5px
+						padding: 0 20px
+						color: $calendar-font-clr
+						background-color: $calendar-background-clr
+						font-size: 1.4rem
+					button
+						width: 35%
+						border: none
+						border-left: 1px solid $calendar-font-clr
+						border-radius: 0
+						font-size: 1.4rem
+				button
+					padding: 5px 10px
+					border: 1px solid $calendar-font-clr
+					border-radius: 5px
+					background-color: transparent
+					cursor: pointer
+					color: $calendar-font-clr
 					font-size: 1.4rem
-					font-weight: 400
-	.events
-		padding-bottom: 340px
-		.no-event
-			place-content: space-around space-evenly
-		.event
-			padding: 5px
+					&:hover
+						color: $calendar-background-clr
+						background-color: $calendar-font-clr
+
+	.right
+		min-width: 392px
+		padding: 20px 10px
+		.today-date
+			display: flex
+			justify-content: space-between
+			font-size: 1.8rem
+			font-weight: bold
+			text-transform: capitalize
+			color: $background-clr-lght
+		.events
+			overflow-x: hidden
+			overflow-y: auto
+			.event
+				color: $calendar-background-clr
+				cursor: pointer
+				border-radius: 10px
+				background: linear-gradient(90deg,$background-clr, transparent)
+				&:nth-child(even)
+					background: transparent
+				&:hover
+					background: linear-gradient(90deg,$calendar-font-clr,transparent)
+				.event-title
+					font-size: 1.2rem
+					font-weight: bold
+			.no-event
+				display: flex
+				place-content: center
+				color:$background-clr-lght
+@media screen and ( max-width: 992px )
+	.container-calendar
+		flex-direction: column
+		.left,.right
+			min-width: 0
+		.left
+			.calendar
+				.month
+					height: 50px
+					font-size: 3.8vw
+					.arrow-left, .arrow-right
+						padding: 0.8vw
+				.weekdays
+					height: 40px
+					font-size: 3vw
+				.days
+					.day
+						height: 6vh
+						font-size: 2.5vmin
+					.today
+						font-size: 4vmin
+				.goto-today
+					.goto
+						input
+							font-size: 2.5vmin
+						button
+							font-size: 2.5vmin
+					button
+						font-size: 2.5vmin
+		.right
+			padding: 0
+			.today-date
+				font-size: 3.8vw
+			.events
+				.event
+					.event-title
+						font-size: auto

@@ -11,14 +11,14 @@ class calendar
 	public static function createCalendar($language = 'de-DE', $events = null)
 	{
 		$content = json_decode(file_get_contents(dirname(__DIR__, 1) . '/dist/i18n/' . $language . '.json'), true);
-		echo '<div class="container">';
+		echo '<div class="container-calendar">';
 		echo '<!-- special thanks to Open Source Coding https://www.youtube.com/@opensourcecoding -->';
 		echo '<div class="left">';
 		echo '<div class="calendar">';
 		echo '<div class="month">';
-		echo '<i class="prev arrow_left"></i>';
+		echo '<i class="prev arrow-left"></i>';
 		echo '<div class="date"></div>';
-		echo '<i class="next arrow_right"></i>';
+		echo '<i class="next arrow-right"></i>';
 		echo '</div>';
 		echo '<div class="weekdays">';
 		foreach ($content['weekdays'] as $value) {
@@ -319,10 +319,10 @@ class calendar
 		echo 'events += `';
 		echo '<div class="event">';
 		echo '<div class="title">';
-		echo '<h2 class="event-title">${event.EVENT_TITLE}</h2>';
+		echo '${event.EVENT_TITLE}';
 		echo '</div>';
 		echo '<div class="event-time">';
-		echo '<span class="event-time">${timeFrom} - ${timeTo}</span>';
+		echo '${timeFrom} - ${timeTo}';
 		echo '</div>';
 		echo '<div class="event-details">';
 		echo '${details}';
