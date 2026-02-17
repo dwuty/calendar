@@ -1,11 +1,8 @@
-* {
+.container-calendar {
   margin: 0;
   padding: 5px;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.container-calendar {
   display: flex;
   justify-content: start;
   min-height: 50vh;
